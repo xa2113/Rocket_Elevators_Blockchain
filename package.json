@@ -25,8 +25,11 @@
   "license": "MIT",
   "dependencies": {
     "@openzeppelin/contracts": "^4.6.0",
+    "async-sema": "^3.1.1",
     "canvas": "^2.8.0",
+    "form-data": "^4.0.0",
     "gif-encoder-2": "^1.0.5",
-    "sha1": "^1.1.1"
+    "sha1": "^1.1.1",
+    "xhr2": "^0.2.1"
   }
 }
