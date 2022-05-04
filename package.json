@@ -27,6 +27,12 @@
     "@openzeppelin/contracts": "^4.6.0",
     "canvas": "^2.8.0",
     "gif-encoder-2": "^1.0.5",
-    "sha1": "^1.1.1"
+    "ipfs-core": "^0.14.3",
+    "sha1": "^1.1.1",
+    "solc": "^0.8.13",
+    "web3": "^1.7.3"
+  },
+  "devDependencies": {
+    "@nomiclabs/buidler": "^1.4.8"
   }
 }

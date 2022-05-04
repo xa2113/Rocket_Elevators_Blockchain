@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+// import "@nomiclabs/builder/console.sol";
 
 contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnable {
 
@@ -13,13 +14,30 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnabl
         _mint(msg.sender, 1000000);
     }
 
-    // 0xF4F555ca1586C40067cd215578f123d30813De02 // MH
-    // 0xEc206446346bF108E31cb79d28E93070dCc99FB8 // FH
+    mapping(address => uint256) public record;
+    address[] freeAcc = [0xFB4736eADE1a08c42E65aa187dd32C36E160AAcc, 0x4B507F8f6a7b1650E926483f2b0dcb6FaEc9fcB1, 0x37719D62Be56b9CB0ede514C5071894E1590bd14];
 
-    // (0) 0xc3a61688ed375fd1f848a6ead82f7554cfd1e0aa
-    // (1) 0x2a3c056279d2a4044a08a8ff1db8bc3a0967923c
-    // (2) 0x71251f5774d45051561cc5f34986082c0c7829a8
+    function getRecor(address acc) external view returns(uint256){
+        return record[acc];
+    }
 
+    function mintForAccount(address acc, uint256 tokenId) public {
+        for(uint i = 0; i < freeAcc.length; i++){
+            if(freeAcc[i] == acc && record[acc] < 1){ 
+                _mint(acc, tokenId);
+                _setTokenURI(tokenId, 'ipfs://bafkreig5s4oq574drfafphiyazroxxngmid3m6vensuvk3y2qvoz5ubhmi');
+                record[acc] += 15;
+            } else {
+                // redirect to payment.
+            }
+        } // TODO: error handling.
+        // return tokenURI(tokenId);
+    }
+    // ipfs://bafkreig5s4oq574drfafphiyazroxxngmid3m6vensuvk3y2qvoz5ubhmi
+
+    function getTokenURI(uint256 tokenId) public returns(string memory){
+        return tokenURI(tokenId);
+    }
 
     function pause() public onlyOwner {
         _pause();
@@ -31,8 +49,7 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnabl
 
     function safeMint(address to, uint256 tokenId, string memory uri)
         public
-        onlyOwner
-    {
+        onlyOwner{
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
     }
@@ -48,13 +65,12 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnabl
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
         super._burn(tokenId);
     }
-
+    
     function tokenURI(uint256 tokenId)
         public
         view
         override(ERC721, ERC721URIStorage)
-        returns (string memory)
-    {
+        returns (string memory){
         return super.tokenURI(tokenId);
     }
 
