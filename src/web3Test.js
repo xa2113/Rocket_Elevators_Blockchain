@@ -10,22 +10,54 @@ const fs = require("fs");
 const rocketNFT = JSON.parse(
     fs.readFileSync("../build/contracts/RocketNFT.json", "utf8")
 );
-
+const rocketToken = JSON.parse(
+    fs.readFileSync("../build/contracts/RocketToken.json", "utf8")
+);
 // console.log(JSON.stringify(contract.abi));
 // const abi_string = JSON.stringify(contract.abi);
 
 const url = "http://localhost:7545";
-const contractAddress = "0xAb41ae698C7F0330a68F740D8C47Ce2aCdC50C8B";
+const contractAddress = "0x4aF97b41f3f23c782B0F9aa4439AB6E14F4dc669";
+const userAddress = "0xFB4736eADE1a08c42E65aa187dd32C36E160AAcc";
 const web3 = new Web3(url);
 const r = new web3.eth.Contract(rocketNFT.abi, contractAddress);
 
-r.methods.tokenURI(9).call((err, res) => {
+const contractAddressToken = "0x6df3046D243654B5F8E1Cf884a0fe19f6cf2F86B";
+const rt = new web3.eth.Contract(rocketToken.abi, contractAddressToken);
+
+const params = [
+    {
+        from: "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431",
+        to: contractAddress,
+        value: web3.utils.toWei("1", "ether"),
+    },
+];
+
+rt.methods
+    .faucet(userAddress) // const transactionhash = r.methods.acceptMatic
+    .call((err, res) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(res);
+        }
+    });
+
+rt.methods.balanceOf(userAddress).call((err, res) => {
     if (err) {
         console.log(err);
     } else {
-        console.log("TOKEN URI: " + res);
+        console.log(res);
     }
 });
+
+// r.methods.tokenURI(9).call((err, res) => {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log("TOKEN URI: " + res);
+//     }
+// });
 
 // {
 // “Name”: String
