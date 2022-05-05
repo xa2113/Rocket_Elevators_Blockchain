@@ -135,7 +135,7 @@ const addMetadata = (_dna, _edition) => {
   let tempMetadata = {
 	file_url: `${baseUri}/${_edition}.png`,
     name: `${namePrefix} #${_edition}`,
-	external_link: external_link_name,
+	external_url: external_link_name,
     description: description,
     collection: collectionName,
 	attributes: attributesList,

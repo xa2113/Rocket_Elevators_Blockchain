@@ -101,7 +101,7 @@ const preview_gif = {
 
 // NFTPort Info
 // ** REQUIRED **
-const AUTH = "0xdB1024d778CE348eff7FaeD22CCC270e4AF5Dedd";
+const AUTH = "8f405c10-6286-4b71-a801-71361964bac0";
 const LIMIT = 2; // Your API key rate limit
 const CONTRACT_NAME = 'RocketNFT';
 const CONTRACT_SYMBOL = 'RE';
