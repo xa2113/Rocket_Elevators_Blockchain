@@ -5,16 +5,16 @@ const { NETWORK } = require(`${basePath}/constants/network.js`);
 const network = NETWORK.eth;
 
 // General metadata for Ethereum
-const namePrefix = "NFT";
-const description = "Remember to replace this description";
+const namePrefix = "RocketNFT";
+const description = "This is where your Rocket NFT will take you - the outerworld of Rocket Planetary System!";
 const baseUri = "ipfs://NewUriToReplace";
-const external_link_name = "https://www.google.com/";
-const collectionName = "CollectionName";
+const external_link_name = "http://thisisrocketelevators.tk.s3-website-us-east-1.amazonaws.com/";
+const collectionName = "BestRocketNFTCollection";
 
 const solanaMetadata = {
   symbol: "YC",
   seller_fee_basis_points: 1000, // Define how much % you want from secondary market sales 1000 = 10%
-  external_url: "https://www.youtube.com/c/hashlipsnft",
+  external_url: 'http://thisisrocketelevators.tk.s3-website-us-east-1.amazonaws.com/',
   creators: [
     {
       address: "7fXNuer5sbZtaTEPhtJ5g5gNtuyRoKkvxdjEjEnPN4mC",
@@ -30,8 +30,8 @@ const layerConfigurations = [
     layersOrder: [
       { name: "Background" },
       { name: "Frame" },
-      { name: "ringA" },
-      { name: "ringB" }
+      { name: "HorizontalRings" },
+      { name: "VerticalRings" }
     ],
   },
 ];
@@ -99,6 +99,32 @@ const preview_gif = {
   imageName: "preview.gif",
 };
 
+// NFTPort Info
+// ** REQUIRED **
+const AUTH = "8f405c10-6286-4b71-a801-71361964bac0";
+const LIMIT = 2; // Your API key rate limit
+const CONTRACT_NAME = 'RocketNFT';
+const CONTRACT_SYMBOL = 'RE';
+const CONTRACT_TYPE = 'erc721';
+const MINT_TO_ADDRESS = '';
+const CHAIN = 'rinkeby';
+const METADATA_UPDATABLE = true; // set to false if you don't want to allow metadata updates after minting
+// const ROYALTY_SHARE = 1000; // Percentage of the token price that goes to the royalty address. 100 bps = 1%
+// const ROYALTY_ADDRESS = "0xd8B808A887326F45B2D0cd999709Aa6264CeF919"; // Address that will receive the royalty
+// ** OPTIONAL **
+// let CONTRACT_ADDRESS = "YOUR CONTRACT ADDRESS"; // If you want to manually include it
+// Generic Metadata is optional if you want to reveal your NFTs
+const GENERIC = false; // Set to true if you want to upload generic metas and reveal the real NFTs in the future
+// const GENERIC_TITLE = "Unknown"; // Replace with what you want the generic titles to say.
+// const GENERIC_DESCRIPTION = "Unknown"; // Replace with what you want the generic descriptions to say.
+// const GENERIC_IMAGE = [
+//   "https://ipfs.io/ipfs/QmUf9tDbkqnfHkQaMdFWSGAeXwVXWA61pFED7ypx4hcsfh",
+// ]; // Replace with your generic image(s). If multiple, separate with a comma.
+// const REVEAL_PROMPT = true; // Set to false if you want to disable the prompt to confirm each reveal.
+// const INTERVAL = 900000; // Milliseconds. This is the interval for it to check for sales and reveal the NFT. 900000 = 15 minutes.
+
+
+
 module.exports = {
   format,
   baseUri,
@@ -120,4 +146,13 @@ module.exports = {
   solanaMetadata,
   gif,
   preview_gif,
+  AUTH,
+  LIMIT,
+  MINT_TO_ADDRESS,
+  CHAIN,
+  GENERIC,
+  CONTRACT_NAME,
+  CONTRACT_SYMBOL,
+  CONTRACT_TYPE,
+
 };

@@ -127,29 +127,27 @@ const drawBackground = () => {
   ctx.fillRect(0, 0, format.width, format.height);
 };
 
+const customFieldList = [];
+
+
 const addMetadata = (_dna, _edition) => {
   let dateTime = Date.now();
   let tempMetadata = {
-	file_path: `${baseUri}/${_edition}.png`,
-    nft_name: `${namePrefix} #${_edition}`,
-	external_link: external_link_name,
+	file_url: `${baseUri}/${_edition}.png`,
+    name: `${namePrefix} #${_edition}`,
+	external_url: external_link_name,
     description: description,
     collection: collectionName,
-	properties: attributesList,
-	levels: [],
-    stats: [],
-    unlockable_content: [],
-    explicit_and_sensitive_content: false,
-    supply: 1,
-    blockchain: "Polygon",
-    price: 0.005,
+	attributes: attributesList,
+  custom_fields: {
     quantity: 1,
+    currency: "RocketToken",
+    price: 1,
     dna: sha1(_dna),
     edition: _edition,
     date: dateTime,
-    ...extraMetadata,
-    
-    compiler: "HashLips Art Engine",
+  },
+   ...extraMetadata,
   };
   if (network == NETWORK.sol) {
     tempMetadata = {
@@ -184,8 +182,8 @@ const addMetadata = (_dna, _edition) => {
 const addAttributes = (_element) => {
   let selectedElement = _element.layer.selectedElement;
   attributesList.push({
-    type: _element.layer.name,
-    name: selectedElement.name,
+    trait_type: _element.layer.name,
+    value: selectedElement.name,
   });
 };
 
@@ -314,7 +312,7 @@ const writeMetaData = (_data) => {
 };
 
 const saveMetaDataSingleFile = (_editionCount) => {
-  let metadata = metadataList.find((meta) => meta.edition == _editionCount);
+  let metadata = metadataList.find((meta) => meta.custom_fields.edition == _editionCount);
   debugLogs
     ? console.log(
         `Writing metadata for ${_editionCount}: ${JSON.stringify(metadata)}`
