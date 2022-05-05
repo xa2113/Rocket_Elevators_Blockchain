@@ -1,28 +1,20 @@
 const Web3 = require("web3");
-// import { abi_string } from "../utils/web3NFT";
-// import { contractJSON } from "../build/contracts/RocketNFT.json";
-// import Web3 from "web3";
-// import { AbiItem } from "web3-utils";
-const ERC721ABI = require("../build/contracts/RocketNFT.json");
-
-// const { default: Web3 } = require("web3");
 const fs = require("fs");
+
 const rocketNFT = JSON.parse(
     fs.readFileSync("../build/contracts/RocketNFT.json", "utf8")
 );
 const rocketToken = JSON.parse(
     fs.readFileSync("../build/contracts/RocketToken.json", "utf8")
 );
-// console.log(JSON.stringify(contract.abi));
-// const abi_string = JSON.stringify(contract.abi);
 
 const url = "http://localhost:7545";
-const contractAddress = "0x4aF97b41f3f23c782B0F9aa4439AB6E14F4dc669";
+const contractAddress = "0x4af1a69dfbDA90675Cea421fEccE818c427B3647";
 const userAddress = "0xFB4736eADE1a08c42E65aa187dd32C36E160AAcc";
+const contractAddressToken = "0x6df3046D243654B5F8E1Cf884a0fe19f6cf2F86B";
+
 const web3 = new Web3(url);
 const r = new web3.eth.Contract(rocketNFT.abi, contractAddress);
-
-const contractAddressToken = "0x6df3046D243654B5F8E1Cf884a0fe19f6cf2F86B";
 const rt = new web3.eth.Contract(rocketToken.abi, contractAddressToken);
 
 const params = [
@@ -33,23 +25,41 @@ const params = [
     },
 ];
 
-rt.methods
-    .faucet(userAddress) // const transactionhash = r.methods.acceptMatic
-    .call((err, res) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(res);
-        }
-    });
+// rt.methods
+//     .faucet(userAddress) // const transactionhash = r.methods.acceptMatic
+//     .call((err, res) => {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             console.log(res);
+//         }
+//     });
 
-rt.methods.balanceOf(userAddress).call((err, res) => {
+// rt.methods.balanceOf(userAddress).call((err, res) => {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log(res);
+//     }
+// });
+
+// console.log(r.mehtods.whitelisted);
+
+r.methods.isWhitelisted(userAddress).call((err, res) => {
     if (err) {
         console.log(err);
     } else {
         console.log(res);
     }
 });
+
+// r.methods.isWhitelisted(userAddress).call((err, res) => {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log(res);
+//     }
+// });
 
 // r.methods.tokenURI(9).call((err, res) => {
 //     if (err) {

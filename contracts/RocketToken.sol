@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 
 contract RocketToken is ERC20, Pausable, Ownable, ERC20Permit {
 
-    mapping(address => uint) public lastFaucetRequest;
+mapping(address => uint) public lastFaucetRequest;
 
     constructor() ERC20("RocketToken", "ROCKET") ERC20Permit("RocketToken") {
         _mint(msg.sender, 1000);

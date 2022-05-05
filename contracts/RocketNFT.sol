@@ -7,10 +7,10 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
-import {RocketToken} from './RocketToken.sol';
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
 
-contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnable {
+contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Enumerable,  ERC721Burnable {
     
     // TOKEN ID AUTO-INCREMENT
     using Counters for Counters.Counter;
@@ -23,8 +23,8 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnabl
     mapping(address => uint) maticBalance; 
     mapping(address => bool) public freeMintUsed;
     mapping(address => bool) public whitelisted;
-    string ipfsAddress = "ipfs://bafkreig5s4oq574drfafphiyazroxxngmid3m6vensuvk3y2qvoz5ubhmi";
     mapping(uint256 => address) internal allowance;
+    string ipfsAddress = "ipfs://bafkreig5s4oq574drfafphiyazroxxngmid3m6vensuvk3y2qvoz5ubhmi";
 
 
     // CONSTRUCTOR
@@ -37,9 +37,9 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnabl
     }
 
     // TRANSACTIONS
-    function mintForFree(address requester) public{
+    function mintForFree(address requester, string memory ipfs) public{
         if(isWhitelisted(requester) && freeMintUsed[requester] == false){
-            safeMint(requester, ipfsAddress);
+            safeMint(requester, ipfs);
             freeMintUsed[requester] = true;
         }else{
             revert();
@@ -86,6 +86,22 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnabl
     function getTokenURI(uint256 tokenId) public view{
         tokenURI(tokenId);
     }
+    function isEligibleForFreeNFT(address requester) public view returns(bool){
+       if(whitelisted[requester] && freeMintUsed[requester] == false){
+           return true;
+       } else {
+           return false;
+       }
+    }
+    function getTokenIdsOfOwner(address owner) public view returns (uint[] memory) {
+        uint[] memory tokensOfOwner = new uint[](ERC721.balanceOf(owner));
+        uint bal = ERC721.balanceOf(owner);
+        uint i;
+        for(i = 0; i < bal; i++){
+            tokensOfOwner[i] = ERC721Enumerable.tokenOfOwnerByIndex(owner, i);
+        }
+        return tokensOfOwner;
+    }
 
     // BASE FUNCTIONS
     function safeMint(address to, string memory ipfsURI) public onlyOwner {
@@ -103,13 +119,6 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnabl
     function burn(uint256 tokenId) public override{
         _burn(tokenId);
     }
-
-    function _beforeTokenTransfer(address from, address to, uint256 tokenId)
-        internal
-        whenNotPaused
-        override{
-        super._beforeTokenTransfer(from, to, tokenId);
-    }
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
         super._burn(tokenId);
     }
@@ -117,6 +126,20 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Burnabl
     returns (string memory){
         return super.tokenURI(tokenId);
     }
+    function _beforeTokenTransfer(address from, address to, uint256 tokenId)
+        internal
+        override(ERC721, ERC721Enumerable){
+        super._beforeTokenTransfer(from, to, tokenId);
+    }
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Enumerable)
+        returns (bool){
+        return super.supportsInterface(interfaceId);
+    }
+
+
 
 }
 

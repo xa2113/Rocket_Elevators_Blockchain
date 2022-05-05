@@ -1,38 +1,39 @@
 {
-  "name": "hashlips_art_engine",
-  "version": "1.1.1",
-  "description": "HashLips Art Engine is a tool used to create multiple different instances of artworks based on provided layers.",
-  "main": "index.js",
-  "bin": "index.js",
-  "pkg": {
-    "assets": [
-      "layers/**/*",
-      "node_modules/**/*",
-      "src/**/*"
-    ]
-  },
-  "scripts": {
-    "build": "node index.js",
-    "generate": "node index.js",
-    "rarity": "node utils/rarity.js",
-    "preview": "node utils/preview.js",
-    "pixelate": "node utils/pixelate.js",
-    "update_info": "node utils/update_info.js",
-    "preview_gif": "node utils/preview_gif.js",
-    "generate_metadata": "node utils/generate_metadata.js"
-  },
-  "author": "Daniel Eugene Botha (HashLips)",
-  "license": "MIT",
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.6.0",
-    "canvas": "^2.8.0",
-    "gif-encoder-2": "^1.0.5",
-    "ipfs-core": "^0.14.3",
-    "sha1": "^1.1.1",
-    "solc": "^0.8.13",
-    "web3": "^1.7.3"
-  },
-  "devDependencies": {
-    "@nomiclabs/buidler": "^1.4.8"
-  }
+    "name": "hashlips_art_engine",
+    "version": "1.1.1",
+    "description": "HashLips Art Engine is a tool used to create multiple different instances of artworks based on provided layers.",
+    "main": "index.js",
+    "bin": "index.js",
+    "pkg": {
+        "assets": [
+            "layers/**/*",
+            "node_modules/**/*",
+            "src/**/*"
+        ]
+    },
+    "scripts": {
+        "build": "node index.js",
+        "generate": "node index.js",
+        "rarity": "node utils/rarity.js",
+        "preview": "node utils/preview.js",
+        "pixelate": "node utils/pixelate.js",
+        "update_info": "node utils/update_info.js",
+        "preview_gif": "node utils/preview_gif.js",
+        "generate_metadata": "node utils/generate_metadata.js"
+    },
+    "author": "Daniel Eugene Botha (HashLips)",
+    "license": "MIT",
+    "dependencies": {
+        "@openzeppelin/contracts": "^4.6.0",
+        "canvas": "^2.8.0",
+        "express": "^4.18.1",
+        "gif-encoder-2": "^1.0.5",
+        "ipfs-core": "^0.14.3",
+        "sha1": "^1.1.1",
+        "solc": "^0.8.13",
+        "web3": "^1.7.3"
+    },
+    "devDependencies": {
+        "@nomiclabs/buidler": "^1.4.8"
+    }
 }
