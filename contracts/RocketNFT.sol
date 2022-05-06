@@ -36,6 +36,10 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Enumera
         whitelisted[0xF4F555ca1586C40067cd215578f123d30813De02] = true;
         whitelisted[0x5563D3361408D41BF172E3720C30b0e35F19A444] = true;
         whitelisted[0x6ffdAf0795D208c11C583C88Cb5dbd2A8955A59e] = true;
+
+        // LOCAL ACC
+        whitelisted[0xFB4736eADE1a08c42E65aa187dd32C36E160AAcc] = true;
+        whitelisted[0x4B507F8f6a7b1650E926483f2b0dcb6FaEc9fcB1] = true;
     }
 
     // TRANSACTIONS
