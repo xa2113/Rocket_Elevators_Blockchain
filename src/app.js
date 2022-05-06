@@ -1,38 +1,26 @@
+const { exec } = require("child_process");
+const fetch = require("node-fetch");
 const express = require("express");
+const util = require("util");
 const Web3 = require("web3");
 const fs = require("fs");
-const util = require("util");
-const Contract = require("web3-eth-contract");
-const { exec } = require("child_process");
 const nftJson = "../build/contracts/RocketNFT.json";
 const rocketNFT = JSON.parse(fs.readFileSync(nftJson, "utf8"));
 const execa = util.promisify(exec);
-// const HDWalletProvider = require("@truffle/hdwallet-provider");
 
-const URL = "http://localhost:7545";
-const contractAddressNFT = "0x3eb578687ae069b4c27D041Bea3db58074E23141"; // TODO: CHANGE
-const contractAddressToken = "0x65c2bbAAe3F6eCC815bD2Acffa94CcB13d982Bd8";
+// const URL = "http://localhost:7545";
+const URL =
+    "https://speedy-nodes-nyc.moralis.io/6a20f4bfebb920c2ab0fb82b/polygon/mumbai";
+const ownerAddress = "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431";
+const contractAddressNFT = "0xEeBbbcf2AE0bac3bBcBe64CdD9465eeF0318456f";
+const contractAddressToken = "0x4D266d91e6bf8f111f0068E8990d43093FDA1b27";
 const tokenJson = "../build/contracts/RocketToken.json";
 const rocketToken = JSON.parse(fs.readFileSync(tokenJson, "utf8"));
 
-// const ipfsAddress =
-//     "ipfs://bafkreig5s4oq574drfafphiyazroxxngmid3m6vensuvk3y2qvoz5ubhmi";
-const fetch = require("node-fetch");
-
 const app = express();
 const web3 = new Web3(URL);
-// const provider = new Web3.providers.HttpProvider(
-//     "https://speedy-nodes-nyc.moralis.io/6a20f4bfebb920c2ab0fb82b/polygon/mumbai"
-// );
 const connNFT = new web3.eth.Contract(rocketNFT.abi, contractAddressNFT);
 const connToken = new web3.eth.Contract(rocketToken.abi, contractAddressToken);
-
-Contract.setProvider(URL);
-var contract = new Contract(rocketNFT.abi, contractAddressNFT);
-
-const accounts = web3.eth.getAccounts().then((res) => {
-    return res;
-});
 
 app.get("/", async function (req, res) {
     const command = await execa(
@@ -48,6 +36,10 @@ app.get("/", async function (req, res) {
             return res.send(ipfsURI);
         }
     });
+});
+
+app.get("/NFT/hello", (req, res) => {
+    res.send("Hello world!");
 });
 
 app.get("/NFT/eligible/:address", async function (req, res) {
@@ -73,7 +65,7 @@ app.get("/NFT/free/:address", async (req, res) => {
             const ipfsURI = dataJson[0]["metadata_uri"];
             console.log(ipfsURI);
             const options = {
-                from: "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431", // TODO: CHANGE
+                from: "ownerAddress", // TODO: CHANGE
                 gas: 5500000,
             };
             connNFT.methods
@@ -99,7 +91,7 @@ app.get("/NFT/mint/:address", async function (req, res) {
             const dataJson = JSON.parse(data);
             const ipfsURI = dataJson[0]["metadata_uri"];
             const options = {
-                from: "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431", // TODO: CHANGE
+                from: ownerAddress,
                 gas: 5500000,
             };
             connNFT.methods
@@ -114,7 +106,7 @@ app.get("/NFT/mint/:address", async function (req, res) {
     // connNFT.methods
     //     .safeMint(walletAddress, "fake_ipfs")
     //     .send({
-    //         from: "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431",
+    //         from: ownerAddress,
     //         gas: 5500000,
     //     })
     //     .then((data) => {
@@ -232,7 +224,7 @@ app.get(`/NFT/pay/rocket/:address`, async function (req, res) {
 
     // step 4 perform mint
     const options = {
-        from: "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431", // TODO: CHANGE
+        from: ownerAddress, // TODO: CHANGE
         gas: 5500000,
     };
 
@@ -258,7 +250,7 @@ app.get(`/NFT/pay/rocket/:address`, async function (req, res) {
     //         const dataJson = JSON.parse(data);
     //         const ipfsURI = dataJson[0]["metadata_uri"];
     //         const options = {
-    //             from: "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431", // TODO: CHANGE
+    //             from: ownerAddress, // TODO: CHANGE
     //             gas: 5500000,
     //         };
     //         await connNFT.methods
@@ -276,7 +268,7 @@ app.get("/Rocket/rich/:address", function (req, res) {
     let walletAddress = req.params["address"];
 
     const options = {
-        from: "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431", // TODO: CHANGE
+        from: ownerAddress, // TODO: CHANGE
         gas: 5500000,
     };
     connToken.methods
@@ -291,7 +283,7 @@ app.get("/NFT/check/:address", async function (req, res) {
     let walletAddress = req.params["address"];
 
     const options = {
-        from: "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431", // TODO: CHANGE
+        from: ownerAddress, // TODO: CHANGE
         gas: 5500000,
     };
 
@@ -313,11 +305,12 @@ app.get("/NFT/check/:address", async function (req, res) {
             res.send(">> Output" + oops);
         });
 });
+
 app.get("/NFT/bal/:address", async function (req, res) {
     let walletAddress = req.params["address"];
 
     const options = {
-        from: "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431", // TODO: CHANGE
+        from: ownerAddress, // TODO: CHANGE
         gas: 5500000,
     };
 
@@ -354,7 +347,7 @@ app.get("/Rocket/balance/:address", function (req, res) {
 app.get(`/NFT/pay/matic/:address`, function (req, res) {
     let walletAddress = req.params["address"];
     const options = {
-        from: "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431", // TODO: CHANGE
+        from: ownerAddress, // TODO: CHANGE
         gas: 5500000,
     };
     connNFT.methods
@@ -376,7 +369,7 @@ app.get(`/NFT/pay/matic/:address`, function (req, res) {
     //         const dataJson = JSON.parse(data);
     //         const ipfsURI = dataJson[0]["metadata_uri"];
     //         const options = {
-    //             from: "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431", // TODO: CHANGE
+    //             from: ownerAddress, // TODO: CHANGE
     //             gas: 5500000,
     //         };
     //         connNFT.methods
