@@ -11,7 +11,7 @@ const execa = util.promisify(exec);
 // const URL = "http://localhost:7545";
 const URL =
     "https://speedy-nodes-nyc.moralis.io/6a20f4bfebb920c2ab0fb82b/polygon/mumbai";
-const ownerAddress = "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431";
+const ownerAddress = "0xEc206446346bF108E31cb79d28E93070dCc99FB8";
 const contractAddressNFT = "0xEeBbbcf2AE0bac3bBcBe64CdD9465eeF0318456f";
 const contractAddressToken = "0x4D266d91e6bf8f111f0068E8990d43093FDA1b27";
 const tokenJson = "../build/contracts/RocketToken.json";
