@@ -10,8 +10,8 @@ const execa = util.promisify(exec);
 // const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 const URL = "http://localhost:7545";
-const contractAddressNFT = "0x8e05d05EEb9D7d59667c2807BAB5Ab1983afd23f"; // TODO: CHANGE
-const contractAddressToken = "0xb9Ae6C86e39CbDBAeE5173292Fb11D98f278A46e";
+const contractAddressNFT = "0x3eb578687ae069b4c27D041Bea3db58074E23141"; // TODO: CHANGE
+const contractAddressToken = "0x65c2bbAAe3F6eCC815bD2Acffa94CcB13d982Bd8";
 const tokenJson = "../build/contracts/RocketToken.json";
 const rocketToken = JSON.parse(fs.readFileSync(tokenJson, "utf8"));
 
