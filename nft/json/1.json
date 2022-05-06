@@ -1,5 +1,5 @@
 {
-  "file_url": "https://ipfs.io/ipfs/bafkreiaifk4fly27jettecsgghyjhlyfnqrppq5haxvbjc5zyjdxjjrkey",
+  "file_url": "https://ipfs.io/ipfs/bafkreieskdwnac6r7ijrtjfl5lgawbofi37pxbbvece6ddwc7ihbk2iwqa",
   "name": "RocketNFT #1",
   "external_url": "http://thisisrocketelevators.tk.s3-website-us-east-1.amazonaws.com/",
   "description": "This is where your Rocket NFT will take you - the outerworld of Rocket Planetary System!",
@@ -7,15 +7,15 @@
   "attributes": [
     {
       "trait_type": "Background",
-      "value": "Orange"
+      "value": "Black 2"
     },
     {
       "trait_type": "Frame",
-      "value": "Blue Frame"
+      "value": "Pink Frame"
     },
     {
       "trait_type": "Sun",
-      "value": "Sun 3"
+      "value": "Sun 4"
     },
     {
       "trait_type": "Planet",
@@ -27,15 +27,15 @@
     },
     {
       "trait_type": "HorizontalRings",
-      "value": "Single Ring"
+      "value": "Double Inner Rings"
     },
     {
       "trait_type": "Meteor",
-      "value": "Tripple Close"
+      "value": "Red and Silver"
     },
     {
       "trait_type": "Astroids",
-      "value": "Astroid none 3"
+      "value": "Astroid 1"
     },
     {
       "trait_type": "Satelite",
@@ -46,8 +46,8 @@
     "quantity": 1,
     "currency": "RocketToken",
     "price": 1,
-    "dna": "a22232435cac4435a9fb66a44faf76197969efd9",
+    "dna": "ccf64d0bb1e1e382fb4363d5054e1605dffb3932",
     "edition": 1,
-    "date": 1651849438477
+    "date": 1651854590952
   }
 }
