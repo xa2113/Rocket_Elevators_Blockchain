@@ -12,6 +12,7 @@
         ]
     },
     "scripts": {
+        "start": "node src/app.js",
         "build": "node index.js",
         "generate": "node index.js",
         "rarity": "node utils/rarity.js",

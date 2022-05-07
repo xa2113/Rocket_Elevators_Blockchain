@@ -1,15 +1,16 @@
 const { exec } = require("child_process");
+const basePath = process.cwd();
 const fetch = require("node-fetch");
 const express = require("express");
 const util = require("util");
 const Web3 = require("web3");
 const fs = require("fs");
-const nftJson = "../build/contracts/RocketNFT.json";
+const nftJson = `${basePath}/build/contracts/RocketNFT.json`;
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const rocketNFT = JSON.parse(fs.readFileSync(nftJson, "utf8"));
 const execa = util.promisify(exec);
 const dotenv = require("dotenv");
-dotenv.config({ path: "../.env" });
+dotenv.config({ path: `${basePath}/.env`});
 const mnemonicenv = process.env.MNEMONIC;
 
 // LOCAL DEVELOPMENT
@@ -25,7 +26,7 @@ const ownerAddress = "0xEc206446346bF108E31cb79d28E93070dCc99FB8";
 const contractAddressNFT = "0x5b53c2F0b1EC018DD05A7432Ca5F6F383F261A9C";
 const contractAddressToken = "0x4D266d91e6bf8f111f0068E8990d43093FDA1b27";
 
-const tokenJson = "../build/contracts/RocketToken.json";
+const tokenJson = `${basePath}/build/contracts/RocketNFT.json`;
 const rocketToken = JSON.parse(fs.readFileSync(tokenJson, "utf8"));
 
 const app = express();
