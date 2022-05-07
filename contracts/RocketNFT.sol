@@ -44,7 +44,7 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Enumera
 
     // TRANSACTIONS
     function mintForFree(address requester, string memory ipfs) public{
-        if(isWhitelisted(requester) && freeMintUsed[requester] == false){
+        if(whitelisted[requester] && freeMintUsed[requester] == false){
             safeMint(requester, ipfs);
             freeMintUsed[requester] = true;
         }else{
