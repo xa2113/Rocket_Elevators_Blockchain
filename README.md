@@ -1,7 +1,7 @@
 ## Rocket Elevators Blockchain
 
-The endpoints are deployed at https://rocketplanetarium.herokuapp.com/.
-The NFT smart contract is deployed at "0x5b53c2F0b1EC018DD05A7432Ca5F6F383F261A9C".
+* The endpoints are deployed at https://rocketplanetarium.herokuapp.com/.
+* The NFT smart contract is deployed at "0x5b53c2F0b1EC018DD05A7432Ca5F6F383F261A9C".
 
 
 This is the backend implementation of the Rocket Rocket NFT collection. The project provides several API endpoints (listed below) to allow the front end application to display a user's NFT collection, purchase a new NFT, redeem a free NFT, etc. The project includes several components: 
@@ -25,12 +25,12 @@ This is the backend implementation of the Rocket Rocket NFT collection. The proj
 
 
 ### SET UP
-npm install
-npm start
+* npm install
+* npm start
 
-To generate a new NFT image: 
-npm run generate
-To upload the image to IPFS:
-npm run upload_file
-To upload the metadata to IPFS:
-npm run upload_metadata
+* To generate a new NFT image: 
+- npm run generate
+* To upload the image to IPFS:
+- npm run upload_file
+* To upload the metadata to IPFS:
+- npm run upload_metadata
