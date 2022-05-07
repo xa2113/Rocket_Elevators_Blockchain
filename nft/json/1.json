@@ -1,53 +1,53 @@
 {
-  "file_url": "https://ipfs.io/ipfs/bafkreiba3vixwkronqk2ujvafqpzr577kkezshigbu3kiudyowzeih7vmi",
-  "name": "RocketNFT #1",
+  "file_url": "https://ipfs.io/ipfs/bafkreiddgzhxapllkims7bau42ibtxz4a5ljxvpbwlscqsbqomjy6nqha4",
+  "name": "RocketNFT",
   "external_url": "http://thisisrocketelevators.tk.s3-website-us-east-1.amazonaws.com/",
   "description": "This is where your Rocket NFT will take you - the outerworld of Rocket Planetary System!",
   "collection": "BestRocketNFTCollection",
   "attributes": [
     {
       "trait_type": "Background",
-      "value": "Green"
+      "value": "Purple"
     },
     {
       "trait_type": "Frame",
-      "value": "Grey Frame"
+      "value": "Blue Frame"
     },
     {
       "trait_type": "Sun",
-      "value": "Sun 2"
+      "value": "Sun 4"
     },
     {
       "trait_type": "Planet",
-      "value": "Neptune"
+      "value": "Uranus"
     },
     {
       "trait_type": "VerticalRings",
-      "value": "Single Ring Pink"
+      "value": "Single Ring 1"
     },
     {
       "trait_type": "HorizontalRings",
-      "value": "Double Rings"
+      "value": "Tripple Crossed Rings"
     },
     {
       "trait_type": "Meteor",
-      "value": "Blue and Silver"
+      "value": "Single Red"
     },
     {
       "trait_type": "Astroids",
-      "value": "Astroid none 2"
+      "value": "Astroid 3"
     },
     {
       "trait_type": "Satelite",
-      "value": "Silver and Gold"
+      "value": "Single Silver"
     }
   ],
   "custom_fields": {
     "quantity": 1,
     "currency": "RocketToken",
     "price": 1,
-    "dna": "1fee409119eea31ade267e9776fe0287062d81a4",
+    "dna": "db94192e092d3a9a91d9c9a83675783f9603d70f",
     "edition": 1,
-    "date": 1651884437096
+    "date": 1651939236490
   }
 }

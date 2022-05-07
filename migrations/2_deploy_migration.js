@@ -3,5 +3,5 @@ var RocketNFT = artifacts.require("RocketNFT");
 
 module.exports = function (deployer) {
     deployer.deploy(RocketNFT);
-    // deployer.deploy(RocketToken);
+    deployer.deploy(RocketToken);
 };

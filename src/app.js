@@ -1,7 +1,8 @@
+const express = require("express");
+const cors = require("cors");
 const { exec } = require("child_process");
 const basePath = process.cwd();
 const fetch = require("node-fetch");
-const express = require("express");
 const util = require("util");
 const Web3 = require("web3");
 const fs = require("fs");
@@ -30,6 +31,7 @@ const tokenJson = `${basePath}/build/contracts/RocketNFT.json`;
 const rocketToken = JSON.parse(fs.readFileSync(tokenJson, "utf8"));
 
 const app = express();
+app.use(cors());
 const web3 = new Web3(
     new HDWalletProvider(
         "lecture quarter sugar pill slot clap brick tent ice forest split deposit",
@@ -111,6 +113,7 @@ app.get("/NFT/mint/:address", async function (req, res) {
                 from: ownerAddress,
                 gas: 5500000,
             };
+            console.log("SafeMinting");
             connNFT.methods
                 .safeMint(walletAddress, ipfsURI)
                 .send(options)
@@ -186,6 +189,7 @@ app.get(`/NFT/pay/rocket/:address`, async function (req, res) {
         });
 
     // step 2 approve transaction from wallet
+    //
     let isApproved =
         balance >= 1
             ? await connToken.methods
@@ -305,4 +309,76 @@ app.get("/Rocket/balance/:address", function (req, res) {
         });
 });
 
-app.listen(process.env.PORT);
+app.get("/test/status", async (req, res) => {
+    let _nftOwner = await connNFT.methods
+        .owner()
+        .call()
+        .then((owner) => owner);
+    let _tokenOwner = await connToken.methods
+        .owner()
+        .call()
+        .then((tokenOwner) => tokenOwner);
+    let output = { nftOwner: _nftOwner, tokenOwner: _tokenOwner };
+    res.send(output);
+});
+
+app.get("/test/payment/:address", async (req, res) => {
+    let walletAddress = req.params["address"];
+
+    let output = {};
+
+    // step 1 check balance
+    let balance = await connToken.methods
+        .balanceOf(walletAddress)
+        .call()
+        .then((bal) => {
+            console.log("balance " + bal);
+            if (bal < 1) {
+                res.send("Sorry, not enough rocket token :(");
+            }
+            return bal;
+        });
+
+    output["balance"] = balance;
+
+    // step 2 approve transaction from wallet
+    let isApproved =
+        balance >= 1
+            ? await connToken.methods
+                  .approve(contractAddressNFT, 1)
+                  .send({ from: walletAddress })
+                  .then((approved) => {
+                      console.log("approval " + approved);
+                      if (!approved) {
+                          res.send("Sorry, transaction was not approved :(");
+                          // res.end();
+                          return approved;
+                      }
+                      return approved;
+                  })
+            : false;
+
+    output["approval "] = isApproved;
+    // step 3 check allowance
+    let allowance = isApproved
+        ? await connToken.methods
+              .allowance(walletAddress, contractAddressNFT)
+              .call({ from: walletAddress })
+              .then((allowance) => {
+                  console.log("allowance " + allowance);
+                  if (allowance < 1) {
+                      res.send("Sorry, transaction was not allowed :( ");
+                      return allowance;
+                      // res.end();
+                  }
+                  return allowance;
+              })
+              .catch((err) => console.log(err))
+        : false;
+
+    output["allowance"] = allowance;
+
+    res.send(output);
+});
+
+app.listen(process.env.PORT || 8000);
