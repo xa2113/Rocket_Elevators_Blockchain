@@ -30,7 +30,12 @@ const tokenJson = `${basePath}/build/contracts/RocketNFT.json`;
 const rocketToken = JSON.parse(fs.readFileSync(tokenJson, "utf8"));
 
 const app = express();
-const web3 = new Web3(new HDWalletProvider(mnemonicenv, URL));
+const web3 = new Web3(
+    new HDWalletProvider(
+        "lecture quarter sugar pill slot clap brick tent ice forest split deposit",
+        URL
+    )
+);
 const connNFT = new web3.eth.Contract(rocketNFT.abi, contractAddressNFT);
 const connToken = new web3.eth.Contract(rocketToken.abi, contractAddressToken);
 
