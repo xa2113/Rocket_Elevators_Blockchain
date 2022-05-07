@@ -1,7 +1,6 @@
 const basePath = process.cwd();
 const { MODE } = require(`${basePath}/constants/blend_mode.js`);
 const { NETWORK } = require(`${basePath}/constants/network.js`);
-const dotenv = require("dotenv").config();
 
 const network = NETWORK.eth;
 
