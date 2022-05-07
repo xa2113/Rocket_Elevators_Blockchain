@@ -3553,6 +3553,13 @@
     "statuses" "2.0.1"
     "unpipe" "~1.0.0"
 
+"find-config@^1.0.0":
+  "integrity" "sha1-6vorm8B/qckOmgw++c7PHMgA9TA="
+  "resolved" "https://registry.npmjs.org/find-config/-/find-config-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "user-home" "^2.0.0"
+
 "find-up@^2.1.0":
   "integrity" "sha1-RdG35QbHF93UgndaK3eSCjwMV6c="
   "resolved" "https://registry.npmjs.org/find-up/-/find-up-2.1.0.tgz"
@@ -6908,6 +6915,11 @@
 "opener@^1.5.2":
   "version" "1.5.2"
 
+"os-homedir@^1.0.0":
+  "integrity" "sha1-/7xJiDNuDoM94MFox+8VISGqf7M="
+  "resolved" "https://registry.npmjs.org/os-homedir/-/os-homedir-1.0.2.tgz"
+  "version" "1.0.2"
+
 "os-tmpdir@~1.0.2":
   "integrity" "sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ="
   "resolved" "https://registry.npmjs.org/os-tmpdir/-/os-tmpdir-1.0.2.tgz"
@@ -8633,6 +8645,13 @@
   "integrity" "sha1-FQWgOiiaSMvXpDTvuu7FBV9WM6k="
   "resolved" "https://registry.npmjs.org/url-to-options/-/url-to-options-1.0.1.tgz"
   "version" "1.0.1"
+
+"user-home@^2.0.0":
+  "integrity" "sha1-nHC/2Babwdy/SGBODwS4tJzenp8="
+  "resolved" "https://registry.npmjs.org/user-home/-/user-home-2.0.0.tgz"
+  "version" "2.0.0"
+  dependencies:
+    "os-homedir" "^1.0.0"
 
 "utf-8-validate@^5.0.2":
   "integrity" "sha512-Yek7dAy0v3Kl0orwMlvi7TPtiCNrdfHNd7Gcc/pLq4BLXqfAmd0J7OWMizUQnTTJsyjKn02mU7anqwfmUP4J8Q=="

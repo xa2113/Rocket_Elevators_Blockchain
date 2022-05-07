@@ -5,27 +5,31 @@ const util = require("util");
 const Web3 = require("web3");
 const fs = require("fs");
 const nftJson = "../build/contracts/RocketNFT.json";
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 const rocketNFT = JSON.parse(fs.readFileSync(nftJson, "utf8"));
 const execa = util.promisify(exec);
+const dotenv = require("dotenv");
+dotenv.config({ path: "../.env" });
+const mnemonicenv = process.env.MNEMONIC;
 
 // LOCAL DEVELOPMENT
-const URL = "http://localhost:7545";
-const ownerAddress = "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431";
-const contractAddressNFT = "0x5BF70a654b7b63E9C306Fbe3c7d8c2324e1cEa2C";
-const contractAddressToken = "0x5593A5C0D33dC3Fe74AeBB6268feBe3B3BcBB965";
+// const URL = "http://localhost:7545";
+// const ownerAddress = "0x04e4664FDE82B439eAb6f1877F0Ffa8091495431";
+// const contractAddressNFT = "0x5BF70a654b7b63E9C306Fbe3c7d8c2324e1cEa2C";
+// const contractAddressToken = "0x5593A5C0D33dC3Fe74AeBB6268feBe3B3BcBB965";
 
 // DEPLOYMENT ENVIRONMENT
-// const URL =
-//     "https://speedy-nodes-nyc.moralis.io/6a20f4bfebb920c2ab0fb82b/polygon/mumbai";
-// const ownerAddress = "0xEc206446346bF108E31cb79d28E93070dCc99FB8";
-// const contractAddressNFT = "0xEeBbbcf2AE0bac3bBcBe64CdD9465eeF0318456f";
-// const contractAddressToken = "0x4D266d91e6bf8f111f0068E8990d43093FDA1b27";
+const URL =
+    "https://speedy-nodes-nyc.moralis.io/6a20f4bfebb920c2ab0fb82b/polygon/mumbai";
+const ownerAddress = "0xEc206446346bF108E31cb79d28E93070dCc99FB8";
+const contractAddressNFT = "0x5b53c2F0b1EC018DD05A7432Ca5F6F383F261A9C";
+const contractAddressToken = "0x4D266d91e6bf8f111f0068E8990d43093FDA1b27";
 
 const tokenJson = "../build/contracts/RocketToken.json";
 const rocketToken = JSON.parse(fs.readFileSync(tokenJson, "utf8"));
 
 const app = express();
-const web3 = new Web3(URL);
+const web3 = new Web3(new HDWalletProvider(mnemonicenv, URL));
 const connNFT = new web3.eth.Contract(rocketNFT.abi, contractAddressNFT);
 const connToken = new web3.eth.Contract(rocketToken.abi, contractAddressToken);
 
@@ -43,10 +47,6 @@ app.get("/", async function (req, res) {
             return res.send(ipfsURI);
         }
     });
-});
-
-app.get("/NFT/hello", (req, res) => {
-    res.send("Hello world!");
 });
 
 app.get("/NFT/eligible/:address", async function (req, res) {
@@ -143,19 +143,9 @@ app.get("/NFT/collectionURIs/:address", async function (req, res) {
             return cleanedData;
         });
 
-    const result = await Promise.all(
-        tokenURIs.map((url) => {
-            fetch(url)
-                .then(function (response) {
-                    return response.json();
-                })
-                .then((response) => {
-                    console.log(response);
-                    return res.send(response);
-                })
-                .catch((err) => console.log(err));
-        })
-    );
+    Promise.all(tokenURIs.map((u) => fetch(u)))
+        .then((responses) => Promise.all(responses.map((resp) => resp.json())))
+        .then((respJsons) => res.send(respJsons));
 });
 
 app.get(`/NFT/pay/rocket/:address`, async function (req, res) {

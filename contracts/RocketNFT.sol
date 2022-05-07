@@ -59,10 +59,10 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Enumera
 
     function mintWithRocket(address requester, string memory ipfs) public payable{
         ERC20 RT = ERC20(ROCKETTOKENADDRESS);
-        // uint256 balance = RT.balanceOf(requester);
-        // require(balance >= 1, ">> Sorry, you do not own enough balance :(");
         RT.transferFrom(requester, address(this), 1);
         safeMint(requester, ipfs);
+        // uint256 balance = RT.balanceOf(requester);
+        // require(balance >= 1, ">> Sorry, you do not own enough balance :(");
     }
 
     function checkRocketBalance(address requester) external view returns(uint256){
@@ -130,7 +130,7 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Enumera
     }
 
     // BASE FUNCTIONS
-    function safeMint(address to, string memory ipfsURI) public onlyOwner {
+    function safeMint(address to, string memory ipfsURI) public {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);

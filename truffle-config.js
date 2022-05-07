@@ -1,6 +1,6 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const env = require("dotenv").config();
-
+const env = require("dotenv").config({ path: "./.env" });
+const mnemonic = process.env.MNEMONIC;
 module.exports = {
     compilers: {
         solc: {
@@ -16,7 +16,7 @@ module.exports = {
         matic: {
             provider: () =>
                 new HDWalletProvider(
-                    env.MNEMONIC,
+                    mnemonic,
                     "https://speedy-nodes-nyc.moralis.io/6a20f4bfebb920c2ab0fb82b/polygon/mumbai"
                 ),
             network_id: 80001,

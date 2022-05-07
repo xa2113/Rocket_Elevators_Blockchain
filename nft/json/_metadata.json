@@ -9,19 +9,19 @@
       "attributes": [
         {
           "trait_type": "Background",
-          "value": "Blue 2"
+          "value": "Green"
         },
         {
           "trait_type": "Frame",
-          "value": "Green Frame"
+          "value": "Grey Frame"
         },
         {
           "trait_type": "Sun",
-          "value": "Sun Reflect 2"
+          "value": "Sun 2"
         },
         {
           "trait_type": "Planet",
-          "value": "Pluto"
+          "value": "Neptune"
         },
         {
           "trait_type": "VerticalRings",
@@ -33,7 +33,7 @@
         },
         {
           "trait_type": "Meteor",
-          "value": "Red and Silver"
+          "value": "Blue and Silver"
         },
         {
           "trait_type": "Astroids",
@@ -41,16 +41,16 @@
         },
         {
           "trait_type": "Satelite",
-          "value": "Single Gold"
+          "value": "Silver and Gold"
         }
       ],
       "custom_fields": {
         "quantity": 1,
         "currency": "RocketToken",
         "price": 1,
-        "dna": "7bdeb30b475c723bf1f27264f954526bc59fe710",
+        "dna": "1fee409119eea31ade267e9776fe0287062d81a4",
         "edition": 1,
-        "date": 1651873546170
+        "date": 1651884437096
       }
     }
   ]
