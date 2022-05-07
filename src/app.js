@@ -29,7 +29,7 @@ const web3 = new Web3(
     )
 );
 const ownerAddress = "0xEc206446346bF108E31cb79d28E93070dCc99FB8";
-const contractAddressNFT = "0x5b53c2F0b1EC018DD05A7432Ca5F6F383F261A9C";
+const contractAddressNFT = "0xDC273f58194A274c648Db1a45988B4612a3E60fe";
 const contractAddressToken = "0x4D266d91e6bf8f111f0068E8990d43093FDA1b27";
 
 const nftJson = `${basePath}/build/contracts/RocketNFT.json`;
