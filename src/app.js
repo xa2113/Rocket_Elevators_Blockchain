@@ -33,7 +33,11 @@ const web3 = new Web3(new HDWalletProvider(mnemonicenv, URL));
 const connNFT = new web3.eth.Contract(rocketNFT.abi, contractAddressNFT);
 const connToken = new web3.eth.Contract(rocketToken.abi, contractAddressToken);
 
-app.get("/", async function (req, res) {
+app.get("/", function (req, res) {
+    res.send("hello world~");
+});
+
+app.get("/ipfsTest", async function (req, res) {
     const command = await execa(
         "npm run generate && npm run upload_file && npm run upload_metadata"
     );
