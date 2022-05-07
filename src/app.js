@@ -4,13 +4,6 @@ const { exec } = require("child_process");
 const basePath = process.cwd();
 const fetch = require("node-fetch");
 const util = require("util");
-const Web3 = require("web3");
-const web3 = new Web3(
-    new HDWalletProvider(
-        "lecture quarter sugar pill slot clap brick tent ice forest split deposit",
-        URL
-    )
-);
 
 const fs = require("fs");
 const execa = util.promisify(exec);
@@ -25,9 +18,16 @@ const mnemonicenv = process.env.MNEMONIC;
 // const contractAddressToken = "0x5593A5C0D33dC3Fe74AeBB6268feBe3B3BcBB965";
 
 // DEPLOYMENT ENVIRONMENT
-const HDWalletProvider = require("@truffle/hdwallet-provider");
 const URL =
     "https://speedy-nodes-nyc.moralis.io/6a20f4bfebb920c2ab0fb82b/polygon/mumbai";
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const Web3 = require("web3");
+const web3 = new Web3(
+    new HDWalletProvider(
+        "lecture quarter sugar pill slot clap brick tent ice forest split deposit",
+        URL
+    )
+);
 const ownerAddress = "0xEc206446346bF108E31cb79d28E93070dCc99FB8";
 const contractAddressNFT = "0x5b53c2F0b1EC018DD05A7432Ca5F6F383F261A9C";
 const contractAddressToken = "0x4D266d91e6bf8f111f0068E8990d43093FDA1b27";
