@@ -30,10 +30,16 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Enumera
     constructor() ERC721('RocketNFT', 'RE') {
         rocketPrice = 1;
         maticPrice = 100000000000000000 wei; // 0.1 MATIC
+        whitelisted[0xEc206446346bF108E31cb79d28E93070dCc99FB8] = true;
+        whitelisted[0xdB1024d778CE348eff7FaeD22CCC270e4AF5Dedd] = true;
+        whitelisted[0xd1679bB3543e8aD195FF9f3Ac3436039bA389237] = true;
+        whitelisted[0xF4F555ca1586C40067cd215578f123d30813De02] = true;
+        whitelisted[0x5563D3361408D41BF172E3720C30b0e35F19A444] = true;
+        whitelisted[0x6ffdAf0795D208c11C583C88Cb5dbd2A8955A59e] = true;
+
+        // LOCAL ACC
         whitelisted[0xFB4736eADE1a08c42E65aa187dd32C36E160AAcc] = true;
         whitelisted[0x4B507F8f6a7b1650E926483f2b0dcb6FaEc9fcB1] = true;
-        whitelisted[0x37719D62Be56b9CB0ede514C5071894E1590bd14] = true;
-        whitelisted[0xEc206446346bF108E31cb79d28E93070dCc99FB8] = true;
     }
 
     // TRANSACTIONS
@@ -53,10 +59,10 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Enumera
 
     function mintWithRocket(address requester, string memory ipfs) public payable{
         ERC20 RT = ERC20(ROCKETTOKENADDRESS);
-        // uint256 balance = RT.balanceOf(requester);
-        // require(balance >= 1, ">> Sorry, you do not own enough balance :(");
         RT.transferFrom(requester, address(this), 1);
         safeMint(requester, ipfs);
+        // uint256 balance = RT.balanceOf(requester);
+        // require(balance >= 1, ">> Sorry, you do not own enough balance :(");
     }
 
     function checkRocketBalance(address requester) external view returns(uint256){
@@ -64,7 +70,7 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Enumera
         uint256 balance = RT.balanceOf(requester);
         return balance;
     }
-
+    
     //Withdraw MATIC
     function withdrawWithMatic() public payable onlyOwner{
         payable(msg.sender).transfer(address(this).balance);
@@ -119,9 +125,12 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Enumera
         }
        return tokensOfOwner;
     }
+    function addToWhitelist(address receiver) public onlyOwner {
+        whitelisted[receiver] = true;
+    }
 
     // BASE FUNCTIONS
-    function safeMint(address to, string memory ipfsURI) public onlyOwner {
+    function safeMint(address to, string memory ipfsURI) public {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
@@ -157,30 +166,3 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Enumera
     }
 
 }
-
-
-///////////////////// CONTRACT DRAFT //////////////////////
-    
-    // address[] whitelisted = [0xFB4736eADE1a08c42E65aa187dd32C36E160AAcc, 0x4B507F8f6a7b1650E926483f2b0dcb6FaEc9fcB1, 0x37719D62Be56b9CB0ede514C5071894E1590bd14];
-
-    // TODO: Create a function that communicates with the ERC20 RocketToken 
-
-    // function mintFree(address acc, uint256 tokenId) public {
-    //     for(uint i = 0; i < whitelisted.length; i++){
-    //         if(whitelisted[i] == acc && freeMintRecord[acc] < 1){ 
-    //             _mint(acc, tokenId);
-    //             _setTokenURI(tokenId, 'ipfs://bafkreig5s4oq574drfafphiyazroxxngmid3m6vensuvk3y2qvoz5ubhmi');
-    //             freeMintRecord[acc] += 1;
-    //         } else {
-    //             // redirect to payment.
-    //         }
-    //     } // TODO: error handling.
-    //     // return tokenURI(tokenId);
-    // }
-    
-    // function safeMint(address to, uint256 tokenId, string memory uri)
-    //     public
-    //     onlyOwner{
-    //     _safeMint(to, tokenId);
-    //     _setTokenURI(tokenId, uri);
-    // }

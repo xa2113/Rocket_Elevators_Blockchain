@@ -107,9 +107,12 @@ const preview_gif = {
     imageName: "preview.gif",
 };
 
+const dotenv = require("dotenv");
+dotenv.config({ path: "../.env" });
+const API_KEY = process.env.API_KEY;
 // NFTPort Info
 // ** REQUIRED **
-const AUTH = "8f405c10-6286-4b71-a801-71361964bac0";
+const AUTH = API_KEY;
 const LIMIT = 2; // Your API key rate limit
 const CONTRACT_NAME = "RocketNFT";
 const CONTRACT_SYMBOL = "RE";
