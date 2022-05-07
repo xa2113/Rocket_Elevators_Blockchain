@@ -6,9 +6,6 @@ const fetch = require("node-fetch");
 const util = require("util");
 const Web3 = require("web3");
 const fs = require("fs");
-const nftJson = `${basePath}/build/contracts/RocketNFT.json`;
-const HDWalletProvider = require("@truffle/hdwallet-provider");
-const rocketNFT = JSON.parse(fs.readFileSync(nftJson, "utf8"));
 const execa = util.promisify(exec);
 const dotenv = require("dotenv");
 dotenv.config({ path: `${basePath}/.env` });
@@ -21,14 +18,21 @@ const mnemonicenv = process.env.MNEMONIC;
 // const contractAddressToken = "0x5593A5C0D33dC3Fe74AeBB6268feBe3B3BcBB965";
 
 // DEPLOYMENT ENVIRONMENT
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 const URL =
     "https://speedy-nodes-nyc.moralis.io/6a20f4bfebb920c2ab0fb82b/polygon/mumbai";
 const ownerAddress = "0xEc206446346bF108E31cb79d28E93070dCc99FB8";
 const contractAddressNFT = "0x5b53c2F0b1EC018DD05A7432Ca5F6F383F261A9C";
 const contractAddressToken = "0x4D266d91e6bf8f111f0068E8990d43093FDA1b27";
 
-const tokenJson = `${basePath}/build/contracts/RocketNFT.json`;
+const nftJson = `${basePath}/build/contracts/RocketNFT.json`;
+const tokenJson = `${basePath}/build/contracts/RocketToken.json`;
+
+const rocketNFT = JSON.parse(fs.readFileSync(nftJson, "utf8"));
 const rocketToken = JSON.parse(fs.readFileSync(tokenJson, "utf8"));
+
+const connNFT = new web3.eth.Contract(rocketNFT.abi, contractAddressNFT);
+const connToken = new web3.eth.Contract(rocketToken.abi, contractAddressToken);
 
 const app = express();
 app.use(cors());
@@ -38,8 +42,6 @@ const web3 = new Web3(
         URL
     )
 );
-const connNFT = new web3.eth.Contract(rocketNFT.abi, contractAddressNFT);
-const connToken = new web3.eth.Contract(rocketToken.abi, contractAddressToken);
 
 app.get("/", function (req, res) {
     res.send("hello world~");
