@@ -5,6 +5,13 @@ const basePath = process.cwd();
 const fetch = require("node-fetch");
 const util = require("util");
 const Web3 = require("web3");
+const web3 = new Web3(
+    new HDWalletProvider(
+        "lecture quarter sugar pill slot clap brick tent ice forest split deposit",
+        URL
+    )
+);
+
 const fs = require("fs");
 const execa = util.promisify(exec);
 const dotenv = require("dotenv");
@@ -36,12 +43,6 @@ const connToken = new web3.eth.Contract(rocketToken.abi, contractAddressToken);
 
 const app = express();
 app.use(cors());
-const web3 = new Web3(
-    new HDWalletProvider(
-        "lecture quarter sugar pill slot clap brick tent ice forest split deposit",
-        URL
-    )
-);
 
 app.get("/", function (req, res) {
     res.send("hello world~");
