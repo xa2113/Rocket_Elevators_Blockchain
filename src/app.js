@@ -10,7 +10,7 @@ const HDWalletProvider = require("@truffle/hdwallet-provider");
 const rocketNFT = JSON.parse(fs.readFileSync(nftJson, "utf8"));
 const execa = util.promisify(exec);
 const dotenv = require("dotenv");
-dotenv.config({ path: `${basePath}/.env`});
+dotenv.config({ path: `${basePath}/.env` });
 const mnemonicenv = process.env.MNEMONIC;
 
 // LOCAL DEVELOPMENT
@@ -300,4 +300,4 @@ app.get("/Rocket/balance/:address", function (req, res) {
         });
 });
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT);
