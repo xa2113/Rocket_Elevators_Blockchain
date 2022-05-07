@@ -79,7 +79,7 @@ app.get("/NFT/free/:address", async (req, res) => {
     const command = await execa(
         "npm run generate && npm run upload_file && npm run upload_metadata"
     );
-    fs.readFile("../nft/_ipfsMetas.json", "utf8", (err, data) => {
+    fs.readFile(`${basePath}/nft/_ipfsMetas.json"`, "utf8", (err, data) => {
         if (err) {
             return "";
         } else {
@@ -106,7 +106,8 @@ app.get("/NFT/mint/:address", async function (req, res) {
     const command = await execa(
         "npm run generate && npm run upload_file && npm run upload_metadata"
     );
-    fs.readFile("../nft/_ipfsMetas.json", "utf8", (err, data) => {
+    fs.readFile(`${basePath}/nft/_ipfsMetas.json`, "utf8", (err, data) => {
+        console.log(data);
         if (err) {
             return "";
         } else {
@@ -234,28 +235,32 @@ app.get(`/NFT/pay/rocket/:address`, async function (req, res) {
 
     let mint =
         allowance >= 1
-            ? fs.readFile("../nft/_ipfsMetas.json", "utf8", (err, data) => {
-                  if (err) {
-                      return "";
-                  } else {
-                      const command = execa(
-                          "npm run generate && npm run upload_file && npm run upload_metadata"
-                      );
-                      const dataJson = JSON.parse(data);
-                      const ipfsURI = dataJson[0]["metadata_uri"];
-                      const options = {
-                          from: ownerAddress, // TODO: CHANGE
-                          gas: 5500000,
-                      };
-                      connNFT.methods
-                          .mintWithRocket(walletAddress, ipfsURI)
-                          .send(options)
-                          .then((data) => {
-                              console.log(data);
-                              return res.send(data);
-                          });
+            ? fs.readFile(
+                  `${basePath}/nft/_ipfsMetas.json`,
+                  "utf8",
+                  (err, data) => {
+                      if (err) {
+                          return "";
+                      } else {
+                          const command = execa(
+                              "npm run generate && npm run upload_file && npm run upload_metadata"
+                          );
+                          const dataJson = JSON.parse(data);
+                          const ipfsURI = dataJson[0]["metadata_uri"];
+                          const options = {
+                              from: ownerAddress, // TODO: CHANGE
+                              gas: 5500000,
+                          };
+                          connNFT.methods
+                              .mintWithRocket(walletAddress, ipfsURI)
+                              .send(options)
+                              .then((data) => {
+                                  console.log(data);
+                                  return res.send(data);
+                              });
+                      }
                   }
-              })
+              )
             : res.send("not enough allowance");
 });
 

@@ -20,7 +20,6 @@
         "pixelate": "node utils/pixelate.js",
         "update_info": "node utils/update_info.js",
         "preview_gif": "node utils/preview_gif.js",
-        "generate_metadata": "node utils/generate_metadata.js",
         "upload_file": "node utils/upload_files.js",
         "upload_metadata": "node utils/upload_metadata.js"
     },
