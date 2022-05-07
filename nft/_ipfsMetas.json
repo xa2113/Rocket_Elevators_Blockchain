@@ -1,29 +1,29 @@
 [{
   "response": "OK",
-  "metadata_uri": "ipfs://bafkreicyrfeys6puapljvqk5tyavhl5ogg4n7bi4q3ebrwmggxjnrufpra",
+  "metadata_uri": "ipfs://bafkreihibqe4usxcikhfssxog6za3pjdo4rxfwl3yi65buxz5cngszx4du",
   "name": "RocketNFT",
   "description": "This is where your Rocket NFT will take you - the outerworld of Rocket Planetary System!",
-  "file_url": "https://ipfs.io/ipfs/bafkreidyhwp6jhtzblakfb3egefli2guvywu2aycfkudwgyba5ps4msrmi",
+  "file_url": "https://ipfs.io/ipfs/bafkreif7dvw5iv7ajlmiaihmjjdgnb3hjskmdxslq37vkedotcyqjos7mm",
   "external_url": "http://thisisrocketelevators.tk.s3-website-us-east-1.amazonaws.com/",
   "animation_url": null,
   "custom_fields": {
     "quantity": 1,
     "currency": "RocketToken",
     "price": 1,
-    "dna": "3453fd09734fbf2479ed9ca3a62dc4d4787307cc",
+    "dna": "384b8610210484076185e0269ecc04335281c3c9",
     "edition": 1,
-    "date": 1651959326285
+    "date": 1651965551783
   },
   "attributes": [
     {
       "trait_type": "Background",
-      "value": "Red",
+      "value": "Blue 2",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Frame",
-      "value": "Green Frame",
+      "value": "Grey Frame",
       "max_value": null,
       "display_type": null
     },
@@ -35,7 +35,7 @@
     },
     {
       "trait_type": "Planet",
-      "value": "Moon",
+      "value": "Mercury",
       "max_value": null,
       "display_type": null
     },
@@ -47,25 +47,25 @@
     },
     {
       "trait_type": "HorizontalRings",
-      "value": "Double Crossed Rings",
+      "value": "Single Ring",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Meteor",
-      "value": "Single Red",
+      "value": "Tripple Close",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Astroids",
-      "value": "Astroid 2",
+      "value": "Astroid 4",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Satelite",
-      "value": "Duo Satelite",
+      "value": "Single Silver",
       "max_value": null,
       "display_type": null
     }

@@ -165,7 +165,8 @@ app.get("/NFT/collectionURIs/:address", async function (req, res) {
         .then((respJsons) => res.send(respJsons));
 });
 
-app.get(`/NFT/pay/rocket/:address`, async function (req, res) {
+app.post(`/NFT/pay/rocket/:address`, async function (req, res) {
+    console.log("ROCKET PAYMENT REQUEST");
     let walletAddress = req.params["address"];
 
     // step 0 set requester as rocketToken wallet address
@@ -180,88 +181,113 @@ app.get(`/NFT/pay/rocket/:address`, async function (req, res) {
             console.log(err);
         });
 
-    // step 1 check balance
-    let balance = await connToken.methods
-        .balanceOf(walletAddress)
-        .call()
-        .then((bal) => {
-            console.log("balance " + bal);
-            if (bal < 1) {
-                res.send("Sorry, not enough rocket token :(");
-            }
-            return bal;
-        });
-
-    // step 2 approve transaction from wallet
-    //
-    let isApproved =
-        balance >= 1
-            ? await connToken.methods
-                  .approve(contractAddressNFT, 1)
-                  .send({ from: walletAddress })
-                  .then((approved) => {
-                      console.log("approval " + approved);
-                      if (!approved) {
-                          res.send("Sorry, transaction was not approved :(");
-                          // res.end();
-                          return approved;
-                      }
-                      return approved;
-                  })
-            : false;
-
-    // step 3 check allowance
-    let allowance = isApproved
-        ? await connToken.methods
-              .allowance(walletAddress, contractAddressNFT)
-              .call({ from: walletAddress })
-              .then((allowance) => {
-                  console.log("allowance " + allowance);
-                  if (allowance < 1) {
-                      res.send("Sorry, transaction was not allowed :( ");
-                      return allowance;
-                      // res.end();
-                  }
-                  return allowance;
-              })
-              .catch((err) => console.log(err))
-        : false;
-
     // step 4 perform mint
     const options = {
         from: ownerAddress, // TODO: CHANGE
         gas: 5500000,
     };
 
-    let mint =
-        allowance >= 1
-            ? fs.readFile(
-                  `${basePath}/nft/_ipfsMetas.json`,
-                  "utf8",
-                  (err, data) => {
-                      if (err) {
-                          return "";
-                      } else {
-                          const command = execa(
-                              "npm run generate && npm run upload_file && npm run upload_metadata"
-                          );
-                          const dataJson = JSON.parse(data);
-                          const ipfsURI = dataJson[0]["metadata_uri"];
-                          const options = {
-                              from: ownerAddress, // TODO: CHANGE
-                              gas: 5500000,
-                          };
-                          connNFT.methods
-                              .mintWithRocket(walletAddress, ipfsURI)
-                              .send(options)
-                              .then((data) => {
-                                  console.log(data);
-                                  return res.send(data);
-                              });
-                      }
-                  }
-              )
-            : res.send("not enough allowance");
+    fs.readFile(`${basePath}/nft/_ipfsMetas.json`, "utf8", (err, data) => {
+        if (err) {
+            return res.send("! BAD REQUEST !");
+        } else {
+            const command = execa(
+                "npm run generate && npm run upload_file && npm run upload_metadata"
+            );
+            const dataJson = JSON.parse(data);
+            const ipfsURI = dataJson[0]["metadata_uri"];
+            const options = {
+                from: ownerAddress, // TODO: CHANGE
+                // from: walletAddress, // TODO: CHANGE
+                gas: 5500000,
+            };
+            console.log("MINT WITH ROCKET");
+            connNFT.methods
+                .mintWithRocket(walletAddress, ipfsURI)
+                .send(options)
+                .then((data) => {
+                    console.log(data);
+                    return res.send(data);
+                });
+        }
+    });
+
+    // step 1 check balance
+    // let balance = await connToken.methods
+    //     .balanceOf(walletAddress)
+    //     .call()
+    //     .then((bal) => {
+    //         console.log("balance " + bal);
+    //         if (bal < 1) {
+    //             res.send("Sorry, not enough rocket token :(");
+    //         }
+    //         return bal;
+    //     });
+
+    // step 2 approve transaction from wallet
+    //
+    // let isApproved =
+    //     balance >= 1
+    //         ? await connToken.methods
+    //               .approve(contractAddressNFT, 1)
+    //               .send({ from: walletAddress })
+    //               .then((approved) => {
+    //                   console.log("approval " + approved);
+    //                   if (!approved) {
+    //                       res.send("Sorry, transaction was not approved :(");
+    //                       // res.end();
+    //                       return approved;
+    //                   }
+    //                   return approved;
+    //               })
+    //         : false;
+
+    // step 3 check allowance
+    // let allowance = isApproved
+    //     ? await connToken.methods
+    //           .allowance(walletAddress, contractAddressNFT)
+    //           .call({ from: walletAddress })
+    //           .then((allowance) => {
+    //               console.log("allowance " + allowance);
+    //               if (allowance < 1) {
+    //                   res.send("Sorry, transaction was not allowed :( ");
+    //                   return allowance;
+    //                   // res.end();
+    //               }
+    //               return allowance;
+    //           })
+    //           .catch((err) => console.log(err))
+    //     : false;
+
+    // let mint =
+    //     allowance >= 1
+    //         ? fs.readFile(
+    //               `${basePath}/nft/_ipfsMetas.json`,
+    //               "utf8",
+    //               (err, data) => {
+    //                   if (err) {
+    //                       return "";
+    //                   } else {
+    //                       const command = execa(
+    //                           "npm run generate && npm run upload_file && npm run upload_metadata"
+    //                       );
+    //                       const dataJson = JSON.parse(data);
+    //                       const ipfsURI = dataJson[0]["metadata_uri"];
+    //                       const options = {
+    //                           from: ownerAddress, // TODO: CHANGE
+    //                           gas: 5500000,
+    //                       };
+    //                       connNFT.methods
+    //                           .mintWithRocket(walletAddress, ipfsURI)
+    //                           .send(options)
+    //                           .then((data) => {
+    //                               console.log(data);
+    //                               return res.send(data);
+    //                           });
+    //                   }
+    //               }
+    //           )
+    //         : res.send("not enough allowance");
 });
 
 app.get("/Rocket/rich/:address", function (req, res) {
