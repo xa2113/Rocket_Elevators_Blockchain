@@ -191,19 +191,15 @@ app.post(`/NFT/pay/rocket/:address`, async function (req, res) {
         //     .catch((err) => {
         //         console.log(err);
         //     });
-
-        const options = {
-            from: ownerAddress, // TODO: CHANGE
-            gas: 5500000,
-        };
+        const command = await execa(
+            "npm run generate && npm run upload_file && npm run upload_metadata"
+        );
 
         fs.readFile(`${basePath}/nft/_ipfsMetas.json`, "utf8", (err, data) => {
+            console.log("Reading file");
             if (err) {
-                return res.send("! BAD REQUEST !");
+                return res.send("! IPFS METAS DOES NOT EXIST !");
             } else {
-                const command = execa(
-                    "npm run generate && npm run upload_file && npm run upload_metadata"
-                );
                 const dataJson = JSON.parse(data);
                 const ipfsURI = dataJson[0]["metadata_uri"];
                 const options = {

@@ -9,23 +9,23 @@
       "attributes": [
         {
           "trait_type": "Background",
-          "value": "Blue 1"
+          "value": "Red"
         },
         {
           "trait_type": "Frame",
-          "value": "Blue Frame"
+          "value": "Pink Frame"
         },
         {
           "trait_type": "Sun",
-          "value": "Sun Reflect 2"
+          "value": "Sun 4"
         },
         {
           "trait_type": "Planet",
-          "value": "Neptune"
+          "value": "Saturn"
         },
         {
           "trait_type": "VerticalRings",
-          "value": "Double Ring 1"
+          "value": "Single Ring Pink"
         },
         {
           "trait_type": "HorizontalRings",
@@ -37,20 +37,20 @@
         },
         {
           "trait_type": "Astroids",
-          "value": "Astroid 1"
+          "value": "Astroid 4"
         },
         {
           "trait_type": "Satelite",
-          "value": "Double Gold"
+          "value": "Single Gold"
         }
       ],
       "custom_fields": {
         "quantity": 1,
         "currency": "RocketToken",
         "price": 1,
-        "dna": "c1c10c7611badf32cb6893ecc4e71574f8f53c31",
+        "dna": "ede0145979bbcb930893a8fddd1a6a48792e9037",
         "edition": 1,
-        "date": 1652027620001
+        "date": 1652029035905
       }
     }
   ]
