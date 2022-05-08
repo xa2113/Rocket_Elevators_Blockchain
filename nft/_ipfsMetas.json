@@ -1,35 +1,35 @@
 [{
   "response": "OK",
-  "metadata_uri": "ipfs://bafkreigtkkfrcel4bz4lwtip243besnqg3r7bggkbf3groppwf5wqjxmyu",
+  "metadata_uri": "ipfs://bafkreiewf7qwjkyrzehum3osywpbjrbcdgb3yssh7iftzwnbpt2noyxfai",
   "name": "RocketNFT",
   "description": "This is where your Rocket NFT will take you - the outerworld of Rocket Planetary System!",
-  "file_url": "https://ipfs.io/ipfs/bafkreielqd7chxjjygkb62zi5shvahy3jsj4e55z4cyg575lreverd7swm",
+  "file_url": "https://ipfs.io/ipfs/bafkreidy3ctsr2ymv33f4mkkbvmgarsptlftdp5kstwttudhb2ly4uvox4",
   "external_url": "http://thisisrocketelevators.tk.s3-website-us-east-1.amazonaws.com/",
   "animation_url": null,
   "custom_fields": {
     "quantity": 1,
     "currency": "RocketToken",
     "price": 1,
-    "dna": "30ec5b175fb2c4f7a38752b03d0f1ff212d9df75",
+    "dna": "c1c10c7611badf32cb6893ecc4e71574f8f53c31",
     "edition": 1,
-    "date": 1651966640959
+    "date": 1652027620001
   },
   "attributes": [
     {
       "trait_type": "Background",
-      "value": "Black 1",
+      "value": "Blue 1",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Frame",
-      "value": "Pink Frame",
+      "value": "Blue Frame",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Sun",
-      "value": "Sun Reflect 1",
+      "value": "Sun Reflect 2",
       "max_value": null,
       "display_type": null
     },
@@ -41,7 +41,7 @@
     },
     {
       "trait_type": "VerticalRings",
-      "value": "Single Ring 1",
+      "value": "Double Ring 1",
       "max_value": null,
       "display_type": null
     },
@@ -53,19 +53,19 @@
     },
     {
       "trait_type": "Meteor",
-      "value": "Blue and Silver",
+      "value": "Single Red",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Astroids",
-      "value": "Astroid none 2",
+      "value": "Astroid 1",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Satelite",
-      "value": "Single Gold",
+      "value": "Double Gold",
       "max_value": null,
       "display_type": null
     }
