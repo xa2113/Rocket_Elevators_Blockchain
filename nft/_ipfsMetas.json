@@ -1,47 +1,47 @@
 [{
   "response": "OK",
-  "metadata_uri": "ipfs://bafkreihibqe4usxcikhfssxog6za3pjdo4rxfwl3yi65buxz5cngszx4du",
+  "metadata_uri": "ipfs://bafkreigtkkfrcel4bz4lwtip243besnqg3r7bggkbf3groppwf5wqjxmyu",
   "name": "RocketNFT",
   "description": "This is where your Rocket NFT will take you - the outerworld of Rocket Planetary System!",
-  "file_url": "https://ipfs.io/ipfs/bafkreif7dvw5iv7ajlmiaihmjjdgnb3hjskmdxslq37vkedotcyqjos7mm",
+  "file_url": "https://ipfs.io/ipfs/bafkreielqd7chxjjygkb62zi5shvahy3jsj4e55z4cyg575lreverd7swm",
   "external_url": "http://thisisrocketelevators.tk.s3-website-us-east-1.amazonaws.com/",
   "animation_url": null,
   "custom_fields": {
     "quantity": 1,
     "currency": "RocketToken",
     "price": 1,
-    "dna": "384b8610210484076185e0269ecc04335281c3c9",
+    "dna": "30ec5b175fb2c4f7a38752b03d0f1ff212d9df75",
     "edition": 1,
-    "date": 1651965551783
+    "date": 1651966640959
   },
   "attributes": [
     {
       "trait_type": "Background",
-      "value": "Blue 2",
+      "value": "Black 1",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Frame",
-      "value": "Grey Frame",
+      "value": "Pink Frame",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Sun",
-      "value": "Sun 1",
+      "value": "Sun Reflect 1",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Planet",
-      "value": "Mercury",
+      "value": "Neptune",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "VerticalRings",
-      "value": "Single Ring 2",
+      "value": "Single Ring 1",
       "max_value": null,
       "display_type": null
     },
@@ -53,19 +53,19 @@
     },
     {
       "trait_type": "Meteor",
-      "value": "Tripple Close",
+      "value": "Blue and Silver",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Astroids",
-      "value": "Astroid 4",
+      "value": "Astroid none 2",
       "max_value": null,
       "display_type": null
     },
     {
       "trait_type": "Satelite",
-      "value": "Single Silver",
+      "value": "Single Gold",
       "max_value": null,
       "display_type": null
     }

@@ -30,6 +30,7 @@ contract RocketNFT is ERC721, ERC721URIStorage, Pausable, Ownable, ERC721Enumera
     constructor() ERC721('RocketNFT', 'RE') {
         rocketPrice = 1;
         maticPrice = 100000000000000000 wei; // 0.1 MATIC
+        ROCKETTOKENADDRESS = 0x4D266d91e6bf8f111f0068E8990d43093FDA1b27;
         whitelisted[0xEc206446346bF108E31cb79d28E93070dCc99FB8] = true;
         whitelisted[0xdB1024d778CE348eff7FaeD22CCC270e4AF5Dedd] = true;
         whitelisted[0xd1679bB3543e8aD195FF9f3Ac3436039bA389237] = true;
