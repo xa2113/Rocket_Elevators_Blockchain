@@ -31,3 +31,6 @@ npm start <br />
 To generate a new NFT image: npm run generate <br />
 To upload the image to IPFS: npm run upload_file <br />
 To upload the metadata to IPFS: npm run upload_metadata 
+
+## TESTING
+truffle test ./test/rocketNFTTest.js
